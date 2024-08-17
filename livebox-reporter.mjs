@@ -135,10 +135,12 @@ function isDeviceInactive(device) {
 
 function parseDevice(device) {
   if (device.name.includes("unknown")) {
-    device.friendlyName = decodeURIComponent(device.ip);
+    device.friendlyName = "Unknown";
   } else {
     device.friendlyName = decodeURIComponent(device.name);
   }
+
+  device.friendlyIp = decodeURIComponent(device.ip);
 
   const metric = createMetric(device);
   metrics.push(metric);
@@ -150,6 +152,7 @@ function createMetric(device) {
     name: "local_network_device",
     labels: {
       name: device.friendlyName,
+      ip: device.friendlyIp,
     },
     value: device.activity,
   };
