@@ -24,7 +24,7 @@ async function tryGetConnectedDevices(retry = false) {
     .then((urn) => getConnectedDevices(urn))
     .catch((error) => {
       console.error("An error occurred:", error);
-      doLogic(true);
+      tryGetConnectedDevices(true);
     });
 }
 
@@ -120,7 +120,7 @@ function isDeviceInactive(device) {
   }
 
   const timeLastActive = new Date(
-    decodeURIComponent(device["time_last_active"])
+    decodeURIComponent(device["time_last_active"]),
   );
 
   const currentDate = Date.now();
@@ -169,7 +169,7 @@ async function sendConnectedDeviceMetric() {
       if (response.ok === false) {
         console.error(
           "Failed to send metrics due to bad status code ",
-          response.statusText
+          response.statusText,
         );
       }
     })
