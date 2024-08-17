@@ -2,4 +2,4 @@
 cd /opt/livebox-reporter
 
 # Run the script
-/usr/bin/node --env-file=.env .\livebox-reporter.mjs
+/usr/bin/node --env-file=.env livebox-reporter.mjs
