@@ -42,9 +42,8 @@ async function login() {
     body: bodyParams.toString(),
   })
     .then((response) => response.text())
-    .then((responseText) => {
-      const urn = responseText.split("'")[1];
-      return urn;
+    .then((body) => {
+      return body.split("'")[1];
     })
     .catch((error) => {
       console.error("Login failed:", error);
@@ -61,7 +60,7 @@ async function getConnectedDevices(urn) {
     headers,
   })
     .then((response) => response.text())
-    .then((responseText) => eval(responseText))
+    .then((body) => eval(body))
     .catch((error) => {
       console.error("Failed to get connected devices:", error);
     });
