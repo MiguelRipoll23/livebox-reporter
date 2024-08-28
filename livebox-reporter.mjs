@@ -5,6 +5,7 @@ const LIVEBOX_PASSWORD_HASH = process.env.LIVEBOX_PASSWORD_HASH;
 const LIVEBOX_LOGIN_PATH = "/login.cgi";
 const LIVEBOX_NETWORK_CONNECTED_PATH = "/cgi/cgi_network_connected.js";
 const METRICS_API_URL = process.env.METRICS_API_URL;
+const METRICS_BEARER_TOKEN = process.env.METRICS_BEARER_TOKEN;
 
 const retries = 0;
 const metrics = [];
@@ -162,6 +163,9 @@ async function sendConnectedDeviceMetric() {
 
   fetch(METRICS_API_URL, {
     method: "POST",
+    headers: {
+      Authorization: `Bearer ${METRICS_BEARER_TOKEN}`,
+    },
     body,
   })
     .then((response) => {
