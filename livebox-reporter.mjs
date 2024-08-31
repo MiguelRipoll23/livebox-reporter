@@ -124,7 +124,7 @@ function isDeviceInactive(device) {
   );
 
   const currentDate = Date.now();
-  const inactiveDuration = 60 * 60 * 1000;
+  const inactiveDuration = 12 * 60 * 60 * 1000;
 
   if (currentDate - timeLastActive.getTime() > inactiveDuration) {
     return true;
